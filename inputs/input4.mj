@@ -13,10 +13,19 @@ class Something extends WTF{
         System.out.println(text + this.name );
     }
 
+    @Override public int vvdo(){
+        int a = 0;
+        int b = a + 1;
+
+        return b;
+    }
+
 }
 class Something{}
 
-class Someone {
+class Someone extends Someone {
+fgkhd a = new fgkhd();
+
     public void doNothing(A a, B b, C c, D[] d){
            if(true){
                 System.out.println("ok :)");

@@ -2,25 +2,40 @@ package compiler;
 
 import compiler.error.Compare;
 import compiler.gen.MiniJavaBaseListener;
+import compiler.gen.MiniJavaLexer;
 import compiler.gen.MiniJavaParser;
 import compiler.symbolTable.SymbolTable;
+import compiler.symbolTable.symbolTableItem.*;
+import compiler.types.Type;
+import compiler.types.singleType.IntType;
+import compiler.types.singleType.UserDefinedType;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import compiler.error.Error;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class FindErrors extends MiniJavaBaseListener {
     SymbolTable currentSymbolTable;
+
+    private boolean CheckingReturnType;
+    private Type ReturnType = null;
+    private int sttnum;
+
+
+    private MiniJavaParser.ClassDeclarationContext CurrClass;
     public static PriorityQueue<Error> errors = new PriorityQueue<>(new Compare());
 
     @Override
     public void enterProgram(MiniJavaParser.ProgramContext ctx) {
         // get symbolTable: (name_[lineNumber]_[column])  for example: program_1_0
-        currentSymbolTable = SymbolTable.getSymbolTableByKey("program_"+ctx.start.getLine() + "_0");
-//        System.out.println(currentSymbolTable);
-        SymbolTable.printAll();
+        currentSymbolTable = SymbolTable.getSymbolTableByKey("program_" + ctx.start.getLine() + "_0");
+        System.out.println(currentSymbolTable);
+//        SymbolTable.printAll();
         // TODO
     }
 
@@ -43,6 +58,71 @@ public class FindErrors extends MiniJavaBaseListener {
     @Override
     public void enterClassDeclaration(MiniJavaParser.ClassDeclarationContext ctx) {
         // TODO
+        CurrClass = ctx;
+
+        if (((ClassSymbolTableItem) SymbolTable.getSymbolTableByKey("program_1_0")
+                .get("class_" + ctx.className.getText())).parent.getName().equals("String")) {
+            System.out.println(new Error(430, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                    "class " + ctx.className.getText() + " can not inherit from class String"));
+        }
+
+        ClassSymbolTableItem si = (ClassSymbolTableItem) SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + ctx.className.getText());
+        int j = 0;
+        if (!si.parents.isEmpty()) {
+            for (InterfaceSymbolTableItem i : si.parents) {
+                System.out.println("FGA " + i.getName());
+                Map<String, SymbolTableItem> m = SymbolTable.getSymbolTableByKey(i.getName() + "_" + i.lineNumber + "_" + i.column)
+                        .getAllItems();
+
+                for (Map.Entry<String, SymbolTableItem> e : m.entrySet()) {
+                    if (e.getKey().contains("method_")) {
+                        MethodSymbolTableItem mi = (MethodSymbolTableItem) e.getValue();
+                        for (j = 0; ctx.methodDeclaration(j) != null; j++) {
+                            if (!ctx.methodDeclaration(j).methodName.getText().
+                                    equals(((MethodSymbolTableItem) e.getValue()).getName())) {
+
+                                if (((MethodSymbolTableItem) e.getValue()).getReturnType().equals(mi.getReturnType())) {
+                                    List<Type> l = mi.getArgumentsTypes();
+                                    if (l.containsAll(((MethodSymbolTableItem) e.getValue()).getArgumentsTypes())) {
+                                        j--;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (j == ctx.methodDeclaration().size()) {
+                            System.out.println(new Error(420, mi.lineNumber, mi.column,
+                                    " Class " + ctx.className.getText() + " must implement all abstract methods"));
+                        }
+                    }
+                }
+            }
+        }
+
+        ArrayList<ClassSymbolTableItem> pars = new ArrayList<>();
+        ClassSymbolTableItem currc = (ClassSymbolTableItem) SymbolTable.getSymbolTableByKey("program_1_0")
+                .get("class_" + ctx.className.getText());
+        while(!currc.parent.getName().equals("Object")){
+            pars.add(currc);
+            if(currc.parent instanceof ClassSymbolTableItem){
+                currc = (ClassSymbolTableItem) currc.parent;
+            }else{
+                break;
+            }
+            if(pars.contains(currc)){
+                System.out.println();
+                StringBuilder sb = new StringBuilder();
+                for(int i = 0; i < pars.size(); i++){
+                    sb.append(pars.get(i).getName());
+                    if(i < pars.size() - 1){
+                        sb.append(" -> ");
+                    }
+                }
+                System.out.println(new Error(410, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                        "Invalid inheritance " + sb.toString()));
+
+            }
+        }
     }
 
     @Override
@@ -72,7 +152,13 @@ public class FindErrors extends MiniJavaBaseListener {
 
     @Override
     public void enterFieldDeclaration(MiniJavaParser.FieldDeclarationContext ctx) {
-        // TODO
+        //Undefined class usage
+        if (ctx.type().Identifier() != null) {
+            if (SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + ctx.type().Identifier()) == null) {
+                System.out.println("Error105 : in line " + ctx.getStart().getLine() + ":" +
+                        ctx.type().Identifier().getSymbol().getCharPositionInLine() + ", cannot find  class" + ctx.type().Identifier().getText());
+            }
+        }
     }
 
     @Override
@@ -92,7 +178,52 @@ public class FindErrors extends MiniJavaBaseListener {
 
     @Override
     public void enterMethodDeclaration(MiniJavaParser.MethodDeclarationContext ctx) {
-        // TODO
+        SymbolTable s = SymbolTable.getSymbolTableByKey(ctx.methodName.getText() + "_" + ctx.methodName.getLine() + "_" +
+                ctx.methodName.getCharPositionInLine());
+        System.out.println(s);
+        MethodSymbolTableItem m = null;
+        System.out.println(s.getPreSymbolTable());
+        m = (MethodSymbolTableItem) s.getPreSymbolTable().get("method_" + ctx.methodName.getText());
+
+        Type t = m.getReturnType();
+        MiniJavaParser.ExpressionContext r = ctx.methodBody().expression();
+        sttnum = ctx.methodBody().statement().size();
+        System.out.println(sttnum);
+        MiniJavaParser.ExpressionContext e = ctx.methodBody().expression();
+        if (e instanceof MiniJavaParser.PowExpressionContext) {
+            if (!(t instanceof IntType)) {
+                Error err = new Error(210, e.getStart().getLine(), e.getStart().getCharPositionInLine(),
+                        "ReturnType of this method must be" + t.toString());
+                System.out.println(err.toString());
+            }
+        } else if (e instanceof MiniJavaParser.ArrayLengthExpressionContext && !(t instanceof IntType)) {
+            Error err = new Error(210, e.getStart().getLine(), e.getStart().getCharPositionInLine(),
+                    "ReturnType of this method must be" + t.toString());
+            System.out.println(err.toString());
+        } else if (e instanceof MiniJavaParser.MethodCallExpressionContext) {
+//            MiniJavaParser.MethodCallExpressionContext m = (MethodCall)
+        }
+
+        if (ctx.Override() != null) {
+            if (CurrClass.parentName == null) {
+                System.out.println(new Error(440, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                        "method does not override method from its superclass."));
+            } else {
+                SymbolTableItem si = SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + CurrClass.parentName.getText());
+                System.out.println(si);
+                if (SymbolTable.getSymbolTableByKey(CurrClass.parentName.getText() + "_" + si.lineNumber + "_" + si.column)
+                        .get(ctx.methodName.getText()) == null) {
+                    System.out.println(new Error(440, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                            "method does not override method from its superclass."));
+                }
+            }
+        }
+
+//         if(r.getAltNumber() == ){
+//
+//
+//            }
+//         }
     }
 
     @Override
@@ -162,7 +293,7 @@ public class FindErrors extends MiniJavaBaseListener {
 
     @Override
     public void enterReturnType(MiniJavaParser.ReturnTypeContext ctx) {
-        // TODO
+
     }
 
     @Override
@@ -252,7 +383,11 @@ public class FindErrors extends MiniJavaBaseListener {
 
     @Override
     public void enterExpressioncall(MiniJavaParser.ExpressioncallContext ctx) {
-        // TODO
+        System.out.println("EXPR");
+        int i = ctx.expression().getRuleContext().getAltNumber();
+        System.out.println(ctx.getText());
+
+
     }
 
     @Override
@@ -302,7 +437,13 @@ public class FindErrors extends MiniJavaBaseListener {
 
     @Override
     public void enterObjectInstantiationExpression(MiniJavaParser.ObjectInstantiationExpressionContext ctx) {
-        // TODO
+        //Undefined class usage
+        if (ctx.Identifier() != null) {
+            if (SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + ctx.Identifier()) == null) {
+                System.out.println("Error105 : in line " + ctx.getStart().getLine() + ":" +
+                        ctx.Identifier().getSymbol().getCharPositionInLine() + ", cannot find  class" + ctx.Identifier().getText());
+            }
+        }
     }
 
     @Override
@@ -442,7 +583,7 @@ public class FindErrors extends MiniJavaBaseListener {
 
     @Override
     public void enterFieldCallExpression(MiniJavaParser.FieldCallExpressionContext ctx) {
-        // TODO
+//        System.out.println(ctx.expression());
     }
 
     @Override

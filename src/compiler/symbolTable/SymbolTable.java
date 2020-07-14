@@ -1,5 +1,6 @@
 package compiler.symbolTable;
 import compiler.symbolTable.symbolTableItem.ClassDeclaration;
+import compiler.symbolTable.symbolTableItem.ClassSymbolTableItem;
 import compiler.symbolTable.symbolTableItem.SymbolTableItem;
 import compiler.symbolTable.symbolTableItem.varItems.FieldSymbolTableItem;
 import compiler.symbolTable.symbolTableItem.varItems.LocalVariableSymbolTableItem;
@@ -75,6 +76,7 @@ public class SymbolTable {
             return items.get(key);
         }
 
+
         while(curr.pre != null && curr.items.get(key) == null){
             curr = curr.pre;
         }
@@ -83,6 +85,10 @@ public class SymbolTable {
 
 
 //        return items.get(key);
+    }
+
+    public Map<String, SymbolTableItem> getAllItems(){
+        return items;
     }
 
     public SymbolTable getPreSymbolTable() {
@@ -110,4 +116,5 @@ public class SymbolTable {
             System.out.println(queue.poll());
         }
     }
+
 }
