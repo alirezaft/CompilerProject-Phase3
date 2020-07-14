@@ -3,7 +3,7 @@ class MyProgram{
 
     }
 }
-class Something extends WTF{
+class Something extends Someone{
     int abc;
     boolean b;
     String name;
@@ -21,9 +21,10 @@ class Something extends WTF{
     }
 
 }
-class Something{}
 
-class Someone extends Someone {
+class od extends Something{}
+
+class Someone extends od {
 fgkhd a = new fgkhd();
 
     public void doNothing(A a, B b, C c, D[] d){

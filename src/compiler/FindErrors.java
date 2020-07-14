@@ -102,16 +102,20 @@ public class FindErrors extends MiniJavaBaseListener {
         ArrayList<ClassSymbolTableItem> pars = new ArrayList<>();
         ClassSymbolTableItem currc = (ClassSymbolTableItem) SymbolTable.getSymbolTableByKey("program_1_0")
                 .get("class_" + ctx.className.getText());
+        StringBuilder sb = new StringBuilder();
         while(!currc.parent.getName().equals("Object")){
+            System.out.println("AAAHHH!");
             pars.add(currc);
             if(currc.parent instanceof ClassSymbolTableItem){
                 currc = (ClassSymbolTableItem) currc.parent;
+                System.out.println(pars);
             }else{
                 break;
             }
             if(pars.contains(currc)){
+                pars.add(pars.get(0));
+                System.out.println("OOF");
                 System.out.println();
-                StringBuilder sb = new StringBuilder();
                 for(int i = 0; i < pars.size(); i++){
                     sb.append(pars.get(i).getName());
                     if(i < pars.size() - 1){
@@ -120,9 +124,11 @@ public class FindErrors extends MiniJavaBaseListener {
                 }
                 System.out.println(new Error(410, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
                         "Invalid inheritance " + sb.toString()));
+                break;
 
             }
         }
+
     }
 
     @Override
