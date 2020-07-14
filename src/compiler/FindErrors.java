@@ -1,5 +1,6 @@
 package compiler;
 
+import compiler.accessModifier.AccessModifier;
 import compiler.error.Compare;
 import compiler.gen.MiniJavaBaseListener;
 import compiler.gen.MiniJavaLexer;
@@ -211,18 +212,34 @@ public class FindErrors extends MiniJavaBaseListener {
         }
 
         if (ctx.Override() != null) {
+            ClassSymbolTableItem ci = (ClassSymbolTableItem) SymbolTable.getSymbolTableByKey("program_1_0").
+                    get("class_" + CurrClass.className.getText());
+
+
             if (CurrClass.parentName == null) {
                 System.out.println(new Error(440, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
                         "method does not override method from its superclass."));
             } else {
-                SymbolTableItem si = SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + CurrClass.parentName.getText());
-                System.out.println(si);
+                ClassSymbolTableItem si = (ClassSymbolTableItem) ci.parent;
                 if (SymbolTable.getSymbolTableByKey(CurrClass.parentName.getText() + "_" + si.lineNumber + "_" + si.column)
                         .get(ctx.methodName.getText()) == null) {
                     System.out.println(new Error(440, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
                             "method does not override method from its superclass."));
                 }
+
+                if(((MethodSymbolTableItem)ci.getSymbolTable().get("method_" + ctx.methodName.getText())).getAccessModifier()
+                        .equals(AccessModifier.ACCESS_MODIFIER_PRIVATE) &&
+                        ((MethodSymbolTableItem)si.getSymbolTable().get("method_" + ctx.methodName.getText())).getAccessModifier()
+                                .equals(AccessModifier.ACCESS_MODIFIER_PUBLIC)){
+                    System.out.println(new Error(320, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                            "the access level cannot be more restrictive than the overridden method's access level"));
+                }
+
+                }
             }
+
+
+
         }
 
 //         if(r.getAltNumber() == ){
@@ -230,7 +247,7 @@ public class FindErrors extends MiniJavaBaseListener {
 //
 //            }
 //         }
-    }
+
 
     @Override
     public void exitMethodDeclaration(MiniJavaParser.MethodDeclarationContext ctx) {

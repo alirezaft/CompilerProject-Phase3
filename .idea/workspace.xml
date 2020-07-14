@@ -21,8 +21,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/compiler/FindErrors.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="114" column="37" selection-start-line="114" selection-start-column="37" selection-end-line="114" selection-end-column="37" />
+            <state relative-caret-position="149">
+              <caret line="75" selection-start-line="75" selection-end-line="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compiler/symbolTable/symbolTableItem/MethodSymbolTableItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+              <folding>
+                <element signature="e#1560#1561#0" expanded="true" />
+                <element signature="e#1597#1598#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compiler/accessModifier/AccessModifier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compiler/symbolTable/symbolTableItem/InterfaceSymbolTableItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+              <folding>
+                <element signature="e#562#563#0" expanded="true" />
+                <element signature="e#634#635#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -36,29 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/compiler/types/singleType/IntType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/compiler/types/singleType/UserDefinedType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/inputs/input4.mj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-146">
-              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+            <state relative-caret-position="300">
+              <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -98,60 +115,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="uml://JAVA/compiler.symbolTable.symbolTableItem.ClassDeclaration">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JAVA</ID>
-              <OriginalElement>compiler.symbolTable.symbolTableItem.ClassDeclaration</OriginalElement>
-              <nodes>
-                <node x="357.5" y="79.0">compiler.symbolTable.symbolTableItem.MethodSymbolTableItem</node>
-                <node x="372.0" y="158.0">compiler.symbolTable.symbolTableItem.InterfaceSymbolTableItem</node>
-                <node x="289.0" y="0.0">compiler.symbolTable.symbolTableItem.SymbolTableItem</node>
-                <node x="188.0" y="158.0">compiler.symbolTable.symbolTableItem.MainClassSymbolItem</node>
-                <node x="202.5" y="79.0">compiler.symbolTable.symbolTableItem.ClassDeclaration</node>
-                <node x="0.0" y="158.0">compiler.symbolTable.symbolTableItem.ClassSymbolTableItem</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="compiler.symbolTable.symbolTableItem.ClassSymbolTableItem" target="compiler.symbolTable.symbolTableItem.ClassDeclaration">
-                  <point x="0.0" y="-14.5" />
-                  <point x="84.0" y="133.0" />
-                  <point x="225.0" y="133.0" />
-                  <point x="-45.0" y="14.5" />
-                </edge>
-                <edge source="compiler.symbolTable.symbolTableItem.ClassDeclaration" target="compiler.symbolTable.symbolTableItem.SymbolTableItem">
-                  <point x="0.0" y="-14.5" />
-                  <point x="270.0" y="54.0" />
-                  <point x="324.25" y="54.0" />
-                  <point x="-35.25" y="14.5" />
-                </edge>
-                <edge source="compiler.symbolTable.symbolTableItem.MainClassSymbolItem" target="compiler.symbolTable.symbolTableItem.ClassDeclaration">
-                  <point x="0.0" y="-14.5" />
-                  <point x="0.0" y="14.5" />
-                </edge>
-                <edge source="compiler.symbolTable.symbolTableItem.MethodSymbolTableItem" target="compiler.symbolTable.symbolTableItem.SymbolTableItem">
-                  <point x="0.0" y="-14.5" />
-                  <point x="449.0" y="54.0" />
-                  <point x="394.75" y="54.0" />
-                  <point x="35.25" y="14.5" />
-                </edge>
-                <edge source="compiler.symbolTable.symbolTableItem.InterfaceSymbolTableItem" target="compiler.symbolTable.symbolTableItem.ClassDeclaration">
-                  <point x="0.0" y="-14.5" />
-                  <point x="465.5" y="133.0" />
-                  <point x="315.0" y="133.0" />
-                  <point x="45.0" y="14.5" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="1.0" x="-23.5" y="111.5" />
-              <SelectedNodes />
-              <Categories />
-              <SCOPE>All</SCOPE>
-              <VISIBILITY>private</VISIBILITY>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/compiler/SaveSymbols.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="138">
@@ -164,12 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>expression</find>
-      <find>Ident</find>
-      <find>Me</find>
-      <find>Methodd</find>
-      <find>MethodDec</find>
-      <find>Express</find>
       <find>return</find>
       <find>Instantia</find>
       <find>ExpressionContext</find>
@@ -189,11 +146,17 @@
       <find>inv</find>
       <find>WTF</find>
       <find>210</find>
-      <find>410</find>
       <find>Something</find>
       <find>Someone</find>
       <find>od</find>
       <find>A</find>
+      <find>410</find>
+      <find>Method</find>
+      <find>MethodC</find>
+      <find>MethodDe</find>
+      <find>Object&quot;</find>
+      <find>440</find>
+      <find>override</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -208,8 +171,8 @@
         <option value="$PROJECT_DIR$/src/compiler/symbolTable/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/compiler/symbolTable/symbolTableItem/InterfaceSymbolTableItem.java" />
         <option value="$PROJECT_DIR$/src/compiler/SaveSymbols.java" />
-        <option value="$PROJECT_DIR$/inputs/input4.mj" />
         <option value="$PROJECT_DIR$/src/compiler/FindErrors.java" />
+        <option value="$PROJECT_DIR$/inputs/input4.mj" />
       </list>
     </option>
   </component>
@@ -315,7 +278,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1594729393903" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1594734235890" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Libraries/antlr-4.8-complete.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -386,12 +349,12 @@
       <workItem from="1594316613481" duration="5046000" />
       <workItem from="1594358215726" duration="121000" />
       <workItem from="1594644977485" duration="11851000" />
-      <workItem from="1594701206085" duration="14575000" />
+      <workItem from="1594701206085" duration="18691000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54632000" />
+    <option name="totallyTimeSpent" value="58748000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -438,7 +401,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/compiler/FindErrors.java</url>
-          <line>35</line>
+          <line>36</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -482,13 +445,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/alirezaft/CompilerPhase3/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/compiler/accessModifier/AccessModifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/compiler/gen/MiniJavaLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1598">
@@ -521,13 +477,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2669">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/compiler/symbolTable/symbolTableItem/MethodSymbolTableItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -608,13 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/compiler/symbolTable/symbolTableItem/InterfaceSymbolTableItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="64" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/compiler/types/singleType/IntType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -657,51 +599,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/compiler/SaveSymbols.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="150" column="31" selection-start-line="150" selection-start-column="25" selection-end-line="150" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="uml://JAVA/compiler.symbolTable.symbolTableItem.ClassDeclaration">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
           <ID>JAVA</ID>
           <OriginalElement>compiler.symbolTable.symbolTableItem.ClassDeclaration</OriginalElement>
           <nodes>
-            <node x="357.5" y="79.0">compiler.symbolTable.symbolTableItem.MethodSymbolTableItem</node>
-            <node x="372.0" y="158.0">compiler.symbolTable.symbolTableItem.InterfaceSymbolTableItem</node>
-            <node x="289.0" y="0.0">compiler.symbolTable.symbolTableItem.SymbolTableItem</node>
-            <node x="188.0" y="158.0">compiler.symbolTable.symbolTableItem.MainClassSymbolItem</node>
-            <node x="202.5" y="79.0">compiler.symbolTable.symbolTableItem.ClassDeclaration</node>
-            <node x="0.0" y="158.0">compiler.symbolTable.symbolTableItem.ClassSymbolTableItem</node>
+            <node x="" y="">compiler.symbolTable.symbolTableItem.MethodSymbolTableItem</node>
+            <node x="" y="">compiler.symbolTable.symbolTableItem.InterfaceSymbolTableItem</node>
+            <node x="" y="">compiler.symbolTable.symbolTableItem.SymbolTableItem</node>
+            <node x="" y="">compiler.symbolTable.symbolTableItem.MainClassSymbolItem</node>
+            <node x="" y="">compiler.symbolTable.symbolTableItem.ClassDeclaration</node>
+            <node x="" y="">compiler.symbolTable.symbolTableItem.ClassSymbolTableItem</node>
           </nodes>
           <notes />
-          <edges>
-            <edge source="compiler.symbolTable.symbolTableItem.ClassSymbolTableItem" target="compiler.symbolTable.symbolTableItem.ClassDeclaration">
-              <point x="0.0" y="-14.5" />
-              <point x="84.0" y="133.0" />
-              <point x="225.0" y="133.0" />
-              <point x="-45.0" y="14.5" />
-            </edge>
-            <edge source="compiler.symbolTable.symbolTableItem.ClassDeclaration" target="compiler.symbolTable.symbolTableItem.SymbolTableItem">
-              <point x="0.0" y="-14.5" />
-              <point x="270.0" y="54.0" />
-              <point x="324.25" y="54.0" />
-              <point x="-35.25" y="14.5" />
-            </edge>
-            <edge source="compiler.symbolTable.symbolTableItem.MainClassSymbolItem" target="compiler.symbolTable.symbolTableItem.ClassDeclaration">
-              <point x="0.0" y="-14.5" />
-              <point x="0.0" y="14.5" />
-            </edge>
-            <edge source="compiler.symbolTable.symbolTableItem.MethodSymbolTableItem" target="compiler.symbolTable.symbolTableItem.SymbolTableItem">
-              <point x="0.0" y="-14.5" />
-              <point x="449.0" y="54.0" />
-              <point x="394.75" y="54.0" />
-              <point x="35.25" y="14.5" />
-            </edge>
-            <edge source="compiler.symbolTable.symbolTableItem.InterfaceSymbolTableItem" target="compiler.symbolTable.symbolTableItem.ClassDeclaration">
-              <point x="0.0" y="-14.5" />
-              <point x="465.5" y="133.0" />
-              <point x="315.0" y="133.0" />
-              <point x="45.0" y="14.5" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="-23.5" y="111.5" />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="279.5" y="93.5" />
           <SelectedNodes />
           <Categories />
           <SCOPE>All</SCOPE>
@@ -716,24 +636,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/compiler/SaveSymbols.java">
+    <entry file="file://$PROJECT_DIR$/src/compiler/symbolTable/symbolTableItem/InterfaceSymbolTableItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="150" column="31" selection-start-line="150" selection-start-column="25" selection-end-line="150" selection-end-column="31" />
+        <state relative-caret-position="272">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+          <folding>
+            <element signature="e#562#563#0" expanded="true" />
+            <element signature="e#634#635#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compiler/accessModifier/AccessModifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compiler/symbolTable/symbolTableItem/MethodSymbolTableItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+          <folding>
+            <element signature="e#1560#1561#0" expanded="true" />
+            <element signature="e#1597#1598#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/compiler/FindErrors.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="114" column="37" selection-start-line="114" selection-start-column="37" selection-end-line="114" selection-end-column="37" />
+        <state relative-caret-position="149">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inputs/input4.mj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-146">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        <state relative-caret-position="300">
+          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
         </state>
       </provider>
     </entry>

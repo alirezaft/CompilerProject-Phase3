@@ -52,6 +52,16 @@ class WTF implements HowAreYou{
 
 }
 
+class om{
+    public void Om(){}
+}
+
+class off extends om{
+    @Override private void Om(){
+        int a = 0;
+    }
+}
+
 interface HowAreYou{
      String sayHowAreYou();
 }
