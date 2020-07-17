@@ -161,9 +161,10 @@ public class FindErrors extends MiniJavaBaseListener {
     public void enterFieldDeclaration(MiniJavaParser.FieldDeclarationContext ctx) {
         //Undefined class usage
         if (ctx.type().Identifier() != null) {
-            if (SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + ctx.type().Identifier()) == null) {
-                System.out.println("Error105 : in line " + ctx.getStart().getLine() + ":" +
-                        ctx.type().Identifier().getSymbol().getCharPositionInLine() + ", cannot find  class" + ctx.type().Identifier().getText());
+            if (ctx.type().Identifier() != null &&
+                    SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + ctx.type().Identifier()) == null) {
+                System.out.println(new Error(105, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                        "cannot find  class " + ctx.type().Identifier().getText()));
             }
         }
     }
