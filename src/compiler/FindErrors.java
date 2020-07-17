@@ -177,6 +177,14 @@ public class FindErrors extends MiniJavaBaseListener {
     @Override
     public void enterLocalDeclaration(MiniJavaParser.LocalDeclarationContext ctx) {
         // TODO
+        //Undefined class usage
+        if (ctx.type().Identifier() != null) {
+            if (ctx.type().Identifier() != null &&
+                    SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + ctx.type().Identifier()) == null) {
+                System.out.println(new Error(105, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                        "cannot find  class " + ctx.type().Identifier().getText()));
+            }
+        }
     }
 
     @Override
@@ -421,9 +429,7 @@ public class FindErrors extends MiniJavaBaseListener {
 
     @Override
     public void enterExpressioncall(MiniJavaParser.ExpressioncallContext ctx) {
-        System.out.println("EXPR");
-        int i = ctx.expression().getRuleContext().getAltNumber();
-        System.out.println(ctx.getText());
+        
 
 
     }
@@ -492,6 +498,14 @@ public class FindErrors extends MiniJavaBaseListener {
     @Override
     public void enterArrayInstantiationExpression(MiniJavaParser.ArrayInstantiationExpressionContext ctx) {
         // TODO
+        //Undefined class usage
+        if (ctx.Identifier() != null) {
+            if (ctx.Identifier() != null &&
+                    SymbolTable.getSymbolTableByKey("program_1_0").get("class_" + ctx.Identifier()) == null) {
+                System.out.println(new Error(105, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                        "cannot find  class " + ctx.Identifier().getText()));
+            }
+        }
     }
 
     @Override
