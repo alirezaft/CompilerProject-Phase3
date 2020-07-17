@@ -15,7 +15,7 @@ class Something extends Someone{
 
 }
 
-class od extends Something{}
+class od extends String{}
 
 class Someone extends od {
 fgkhd a = new fgkhd();
