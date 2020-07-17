@@ -104,22 +104,22 @@ public class FindErrors extends MiniJavaBaseListener {
         ClassSymbolTableItem currc = (ClassSymbolTableItem) SymbolTable.getSymbolTableByKey("program_1_0")
                 .get("class_" + ctx.className.getText());
         StringBuilder sb = new StringBuilder();
-        while(!currc.parent.getName().equals("Object")){
+        while (!currc.parent.getName().equals("Object")) {
             System.out.println("AAAHHH!");
             pars.add(currc);
-            if(currc.parent instanceof ClassSymbolTableItem){
+            if (currc.parent instanceof ClassSymbolTableItem) {
                 currc = (ClassSymbolTableItem) currc.parent;
                 System.out.println(pars);
-            }else{
+            } else {
                 break;
             }
-            if(pars.contains(currc)){
+            if (pars.contains(currc)) {
                 pars.add(pars.get(0));
                 System.out.println("OOF");
                 System.out.println();
-                for(int i = 0; i < pars.size(); i++){
+                for (int i = 0; i < pars.size(); i++) {
                     sb.append(pars.get(i).getName());
-                    if(i < pars.size() - 1){
+                    if (i < pars.size() - 1) {
                         sb.append(" -> ");
                     }
                 }
@@ -227,20 +227,34 @@ public class FindErrors extends MiniJavaBaseListener {
                             "method does not override method from its superclass."));
                 }
 
-                if(((MethodSymbolTableItem)ci.getSymbolTable().get("method_" + ctx.methodName.getText())).getAccessModifier()
-                        .equals(AccessModifier.ACCESS_MODIFIER_PRIVATE) &&
-                        ((MethodSymbolTableItem)si.getSymbolTable().get("method_" + ctx.methodName.getText())).getAccessModifier()
-                                .equals(AccessModifier.ACCESS_MODIFIER_PUBLIC)){
+                MethodSymbolTableItem cmethod = (MethodSymbolTableItem) ci.getSymbolTable().get("method_" + ctx.methodName.getText());
+                MethodSymbolTableItem smethod = (MethodSymbolTableItem) si.getSymbolTable().get("method_" + ctx.methodName.getText());
+
+                if (cmethod.getAccessModifier().equals(AccessModifier.ACCESS_MODIFIER_PRIVATE) &&
+                        smethod.getAccessModifier().equals(AccessModifier.ACCESS_MODIFIER_PUBLIC)) {
                     System.out.println(new Error(320, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
                             "the access level cannot be more restrictive than the overridden method's access level"));
                 }
 
+                System.out.println(cmethod);
+                if (!cmethod.getReturnType().equals(smethod.getReturnType())) {
+                    System.out.println(new Error(240, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                            "the return type of the overriding method must be the same as that of the overridden method"));
                 }
+
+                for (int i = 0; i < cmethod.getArgumentsTypes().size(); i++) {
+                    if(!cmethod.getArgumentsTypes().get(i).equals(smethod.getArgumentsTypes().get(i))){
+                        System.out.println(new Error(250, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
+                                "the parameters of the overriding method must be the same as that of the overridden method"));
+                        break;
+                    }
+                }
+
             }
-
-
-
         }
+
+
+    }
 
 //         if(r.getAltNumber() == ){
 //

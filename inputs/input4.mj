@@ -13,13 +13,6 @@ class Something extends Someone{
         System.out.println(text + this.name );
     }
 
-    @Override public int vvdo(){
-        int a = 0;
-        int b = a + 1;
-
-        return b;
-    }
-
 }
 
 class od extends Something{}
@@ -49,7 +42,9 @@ fgkhd a = new fgkhd();
 
 class WTF implements HowAreYou{
 
-
+    @Override public String sayHowAreyou(){
+        return "sda";
+    }
 }
 
 class om{
