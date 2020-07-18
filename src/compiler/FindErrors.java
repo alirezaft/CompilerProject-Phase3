@@ -218,15 +218,34 @@ public class FindErrors extends MiniJavaBaseListener {
             ClassSymbolTableItem ci = (ClassSymbolTableItem) SymbolTable.getSymbolTableByKey("program_1_0").
                     get("class_" + CurrClass.className.getText());
 
+            boolean found = false;
+            if(CurrClass.parentName != null) {
 
-            if (CurrClass.parentName == null) {
-                Error err = new Error(440, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
-                        "method does not override method from its superclass.");
-                errors.add(err);
-            } else {
+
                 ClassSymbolTableItem si = (ClassSymbolTableItem) ci.parent;
                 if (SymbolTable.getSymbolTableByKey(CurrClass.parentName.getText() + "_" + si.lineNumber + "_" + si.column)
-                        .get(ctx.methodName.getText()) == null) {
+                        .get("method_" + ctx.methodName.getText()) != null) {
+                    System.out.println("SUPER");
+                    found = true;
+                }
+
+                if(!found && ci.parents.size() > 0){
+                    System.out.println("INTER");
+                    List<InterfaceSymbolTableItem> inter = ((ClassSymbolTableItem)SymbolTable.getSymbolTableByKey(CurrClass.parentName.getText() + "_" + si.lineNumber + "_" + si.column)
+                            .get(CurrClass.className.getText())).parents;
+
+                    for(InterfaceSymbolTableItem i : inter){
+                        Map<String, SymbolTableItem> els = SymbolTable.getSymbolTableByKey(i.getName() + "_" + i.lineNumber + "_" + i.column).getAllItems();
+                        System.out.println(SymbolTable.getSymbolTableByKey(i.getName() + "_" + i.lineNumber + "_" + i.column));
+                        for(Map.Entry<String, SymbolTableItem> en : els.entrySet()){
+                            if(en.getValue() instanceof MethodSymbolTableItem && ctx.methodName.getText().equals(en.getValue().getName())){
+                                found = true;
+                            }
+                        }
+                    }
+                }
+
+                if(!found){
                     Error err = new Error(440, ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine(),
                             "method does not override method from its superclass.");
                     errors.add(err);

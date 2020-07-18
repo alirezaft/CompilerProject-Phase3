@@ -15,10 +15,18 @@ class Something extends Someone{
 
 }
 
-class od extends Someone{}
+class od extends Someone{
+    public int s(){
+        return 0;
+    }
+}
 
 class Someone extends od {
 fgkhd a = new fgkhd();
+
+    @Override public int s(){
+        return 1;
+    }
 
     public void doNothing(A a, B b, C c, D[] d){
            if(true){
@@ -42,7 +50,7 @@ fgkhd a = new fgkhd();
 
 class WTF implements HowAreYou{
 
-    @Override public String sayHowAreyou(){
+    @Override public String sayHowAreYou(){
         return "sda";
     }
 }
